@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '../node_modules/ag-grid-community/dist/styles/ag-grid.css';
+@import '../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.topbar {
+    background-color: #333333 !important;
+    margin: 0px;
+    a {
+        color: #ffffff !important;
+    }
+}
+* {
+    outline: none !important;
+}
+a {
+    text-decoration: none;
+}
+.container {
+    margin-left: 100px !important;
+    max-width: calc(100vw - 150px) !important;
+}
+ul {
+    padding: 0px;
+    margin: 0px;
+    li {
+        list-style-type: none;
+        button {
+            padding: 10px !important;
+            span {
+                color: #ffffff;
+            }
+        }
+    }
+}
+.sidebar {
+    background-color: #424bf5;
+    max-width: 80px;
+    display: inline-block;
+    height: calc(100vh - 56px);
+    top: 56px;
+    position: fixed;
+    a {
+        display: inline-block;
+        padding: 15px 10px;
+    }
+}
+.contentSection {
+    display: inline-block;
+}
+.addBtn {
+    .material-icons {
+        font-size: 20px;
+        margin-right: 5px;
+    }
+}
+.mat-flat-button.mat-primary {
+    background-color: #424bf5;
+}
+.mat-icon-button.mat-primary {
+    color: #424bf5;
+}
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

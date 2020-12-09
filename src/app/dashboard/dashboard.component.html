@@ -1,0 +1,113 @@
+<div>
+    <div class="text-right mb-4 addBtn">
+        <button mat-flat-button color="primary" (click)="open(content, 'Add')">
+            <span class="material-icons">
+                add
+            </span>Add
+        </button>
+    </div>
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Projects in hand</th>
+            <th>Reporting</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let item of data">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.department}}</td>
+            <td>{{item.designation}}</td>
+            <td>{{item.projects}}</td>
+            <td>{{item.reporting}}</td>
+            <td>
+                <button mat-icon-button color="primary" (click)="read(item.id, content, Edit)">
+                    <span class="material-icons">
+                        create
+                    </span>
+                </button>
+                <button mat-icon-button color="primary" (click)="delete(item.id)">
+                    <span class="material-icons">
+                        delete
+                    </span>
+                </button>    
+            </td>
+        </tr>
+    </table>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="modal-basic-title" *ngIf="modalName == 'Add' else editEmpDetail">Add Employee Detail</h5>
+      <ng-template #editEmpDetail>
+        <h5 class="modal-title" id="modal-basic-title">Edit Employee Detail</h5>
+      </ng-template>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="empModalData">
+              <div class="col-sm-12 mb-4">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Name" formControlName="name">
+                <span class="error" *ngIf="name.touched && name.invalid">Please enter name</span>
+              </div>
+              <div class="col-sm-12 mb-4">
+                <label>Age</label>
+                <input type="number" class="form-control" placeholder="Age" formControlName="age">
+                <span class="error" *ngIf="age.touched && age.invalid">Please enter Age</span>
+              </div>
+              <div class="form-group col-sm-12 mb-4">
+                <label>Department</label>
+                <select class="form-control" formControlName="department">
+                  <option value="" selected>Choose...</option>
+                  <option value="Design">Design</option>
+                  <option value="Development">Development</option>
+                  <option value="Support">Support</option>
+                </select>
+                <span class="error" *ngIf="department.touched && department.invalid">Please select department</span>
+              </div>
+              <div class="form-group col-sm-12 mb-4">
+                <label>Designation</label>
+                <select class="form-control" formControlName="designation">
+                  <option selected>Choose...</option>
+                  <option value="Sr.Designer">Sr.Designer</option>
+                  <option value="Jr.Designer">Jr.Designer</option>
+                  <option value="Sr.Development">Sr.Development</option>
+                  <option value="Jr.Development">Jr.Development</option>
+                  <option value="Sr.Support">Sr.Support</option>
+                  <option value="Jr.Designer">Jr.Support</option>
+                </select>
+                <span class="error" *ngIf="designation.touched && designation.invalid">Please select designation</span>
+              </div>
+              <div class="col-sm-12 mb-4">
+                <label>Project in hand</label>
+                <input type="number" class="form-control" placeholder="Projects in hand" formControlName="projects">
+                <span class="error" *ngIf="projects.touched && projects.invalid">Please enter No. of projects</span>
+              </div>
+              <div class="form-group col-sm-12 mb-4">
+                <label>Reporting To</label>
+                <select class="form-control" formControlName="reporting">
+                  <option selected>Choose...</option>
+                  <option value="Vijay">Vijay</option>
+                  <option value="Hari">Hari</option>
+                  <option value="Sivapriya">Sivapriya</option>
+                </select>
+              
+              </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button mat-flat-button (click)="clearEmp()">Clear</button>
+        <button mat-flat-button color="primary" (click)="addEmp()" *ngIf="modalName == 'Add' else updateBtn" [disabled]="empModalData.invalid">Add</button>
+        <ng-template #updateBtn>
+          <button mat-flat-button color="primary" (click)="updateEmp(updateId)" [disabled]="empModalData.invalid">Update</button>
+        </ng-template>
+    </div>
+  </ng-template>
